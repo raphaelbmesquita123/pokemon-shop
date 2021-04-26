@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import styles from './App.module.scss';
+import { BasketDisplay } from './container/Basket-Display/basket-display-container';
+import { HeaderContainer } from './container/Header/header-container';
+import { SearchBar } from './container/Search-Bar/search-bar-container';
+import { Stores } from './pages/stores/Stores';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div >
+      <header>
+        <HeaderContainer/>
       </header>
+      <div className={styles.wrapper}>
+        <main>
+          <SearchBar/>
+          <section className={styles.storeContainer}>
+            <Stores/>
+          </section>
+        </main>
+
+        <section className={styles.basketContainer}>
+          <BasketDisplay/>
+        </section>
+
+      </div>
+
     </div>
   );
 }
-
 export default App;
