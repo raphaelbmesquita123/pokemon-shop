@@ -1,6 +1,7 @@
 import styles from './basket-display.styles.module.scss'
 
 export function BasketDisplay (){
+
     return(
         <div className={styles.basketDisplay}>
             <div className={styles.headDisplay}>
@@ -11,8 +12,9 @@ export function BasketDisplay (){
                 <table>
                     <thead>
                         <tr>
-                            <th>Pokemon</th>
+                            <th></th>
                             <th>Name</th>
+                            <th>Qnt</th>
                             <th>Price</th>
                         </tr>
                     </thead>
@@ -20,7 +22,8 @@ export function BasketDisplay (){
                     <tbody>
                         <tr>
                             <td>bulbasqdwqdalro</td>
-                            <td>bulba</td>
+                            <td>pikachu <br/> 1500</td>
+                            <td>2</td>
                             <td>25</td>
                         </tr>
                     </tbody>

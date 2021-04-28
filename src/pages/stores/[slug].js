@@ -14,7 +14,6 @@ export function Stores (){
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        
         const fetchPokemons = async (qnt) => {
             for (let i = 1; i <= qnt; i++){
                 await fethPokemon(i)
@@ -36,13 +35,14 @@ export function Stores (){
             }).catch(err => console.log(err))
         }
 
-        fetchPokemons(100) //quantity of pokemons
+        fetchPokemons(5) //quantity of pokemons
     }, [])
 
 
     return(
+
         <div >
-           <header>
+            <header>
                 <HeaderContainer/>
             </header>
             <div className={styles.wrapper}>
@@ -51,7 +51,7 @@ export function Stores (){
                     <section className={styles.storeContainer}>
                         {
                             isLoading ? <div> <h1>Loading</h1> </div>
-
+                            
                             : 
                             
                             pokemons.map(pokemon => {
@@ -59,7 +59,7 @@ export function Stores (){
                                     <PokemonCard key={pokemon.id} image={pokemon.id} name={pokemon.name} experience={pokemon.experience} price={pokemon.price} type={ pokemon.type  }/>
                                     )
                                 }
-                            )
+                                )
                         }
                     </section>
                 </main>
@@ -68,6 +68,7 @@ export function Stores (){
                 </section>
             </div>
         </div>
+
     )
 }
 
