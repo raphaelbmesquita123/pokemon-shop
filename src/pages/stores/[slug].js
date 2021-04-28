@@ -14,8 +14,9 @@ export function Stores (){
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        const fetchPokemons = async () => {
-            for (let i = 1; i <= 3; i++){
+        
+        const fetchPokemons = async (qnt) => {
+            for (let i = 1; i <= qnt; i++){
                 await fethPokemon(i)
             }
         }
@@ -27,16 +28,17 @@ export function Stores (){
                     id: response.data.id,
                     name: response.data.name,
                     experience: response.data.base_experience,
-                    price: response.data.base_experience * 2,
+                    price: response.data.base_experience * 3,
                     type: response.data.types[0].type.name
                 }
-                setPokemons([...pokemons, pokemonData])
+                setPokemons(pokemons => [...pokemons, pokemonData])
                 setIsLoading(false)
             })
         }
 
-        fetchPokemons()
+        fetchPokemons(100) //quantity of pokemons
     }, [])
+
 
     return(
         <div >
@@ -48,15 +50,13 @@ export function Stores (){
                     <SearchBar/>
                     <section className={styles.storeContainer}>
                         {
-                            console.log(pokemons)
-                        }                        
-                        {
                             isLoading ? <div> <h1>Loading</h1> </div>
+
                             : 
                             
                             pokemons.map(pokemon => {
                                 return(
-                                    <PokemonCard key={pokemon.id} image={pokemon.id} name={pokemon.name} experience={pokemon.experience} price={pokemon.price}/>
+                                    <PokemonCard key={pokemon.id} image={pokemon.id} name={pokemon.name} experience={pokemon.experience} price={pokemon.price} type={ pokemon.type  }/>
                                     )
                                 }
                             )
@@ -72,23 +72,3 @@ export function Stores (){
 }
 
 
-
-// useEffect(() => {
-//     for(let i = 1; i <= 5; i++){
-//         fethPokemon(i)    
-//     }
-    
-//     async function fethPokemon (pokemon){
-//         await api.get(`${pokemon}`).then(response => {
-
-//             const pokemonData = {
-//                 id: response.data.id,
-//                 name: response.data.name,
-//                 experience: response.data.base_experience,
-//                 price: response.data.base_experience * 2,
-//                 type: response.data.types[0].type.name
-//             }
-//             setPokemons(pokemonData)   
-//         })
-//     }
-// }, [])

@@ -1,5 +1,56 @@
 .basketDisplay{
     display:flex;
+    justify-content:center;
+    flex-direction: column;
+    position: fixed;
+    margin: 5px;
+    width: 30rem;
+    padding: 20px;
+    margin-top: -10px;
     background-color: #c90000;
-    width:100%;
+
+    .headDisplay{
+        background-color: var(--gray-100);
+        padding: 10px;
+        
+        strong{
+            margin-left: 10px;
+        }
+    }
+
+    .footDisplay{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--gray-100);
+        padding: 10px;
+
+        button{
+            padding: 6px 8px;
+            border: none;
+            color: var(--white);
+            background-color: var(--red-500);
+        }
+    }
+
+    .tableDisplay{
+        background: var(--white);
+        height: 400px;
+        padding: 30px 10px;
+        overflow-y: scroll;
+
+        table, th, td{
+            border: 1px solid black;
+            border-collapse: collapse ;
+            padding: 30px;
+        }
+
+
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .basketContainer{
+        display: none;
+    }
 }
