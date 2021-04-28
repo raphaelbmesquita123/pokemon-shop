@@ -2,7 +2,7 @@ import { Stores } from './pages/stores/[slug]';
 import { HomePage }from './pages/home-page/home-page';
 import { BasketPage } from './pages/basket-page/basket-page';
 
-import { BasketContextProvider } from './Contexts/Basket-Context';
+import { AplicationProvider } from './Contexts/aplication-context';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import styles from './App.module.scss'
@@ -11,7 +11,7 @@ function App() {
 
 
   return (
-    <BasketContextProvider>
+    <AplicationProvider>
       <BrowserRouter >
         <div className={styles.App}>
           <Switch>
@@ -21,7 +21,7 @@ function App() {
           </Switch>
         </div>
       </BrowserRouter>
-    </BasketContextProvider>
+    </AplicationProvider>
   );
 }
 export default App;

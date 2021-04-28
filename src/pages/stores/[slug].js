@@ -2,6 +2,7 @@ import { BasketDisplay } from '../../container/Basket-Display/basket-display-con
 import { HeaderContainer } from '../../container/Header/header-container';
 import { SearchBar } from '../../container/Search-Bar/search-bar-container';
 import { PokemonCard } from '../../components/card/pokemon-card'
+import { Aplication } from '../../Contexts/aplication-context'
 
 import styles from './slug.style.module.scss';
 
@@ -10,8 +11,11 @@ import {  useState, useEffect } from 'react'
 
 
 export function Stores (){
-    const [pokemons, setPokemons] = useState([])
+
+    const { pokemons, setPokemons, onSearchChange } = Aplication()
     const [isLoading, setIsLoading] = useState(true)
+  
+
 
     useEffect(() => {
         const fetchPokemons = async (qnt) => {
@@ -34,9 +38,10 @@ export function Stores (){
                 setIsLoading(false)
             }).catch(err => console.log(err))
         }
-
-        fetchPokemons(100) //quantity of pokemons
+        fetchPokemons(120) //quantity of pokemons
     }, [])
+
+
 
 
     return(
@@ -47,7 +52,7 @@ export function Stores (){
             </header>
             <div className={styles.wrapper}>
                 <main>
-                    <SearchBar/>
+                    <SearchBar handleChange={onSearchChange}/>
                     <section className={styles.storeContainer}>
                         {
                             isLoading ? <div> <h1>Loading</h1> </div>
@@ -71,5 +76,4 @@ export function Stores (){
 
     )
 }
-
 
