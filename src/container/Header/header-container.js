@@ -1,7 +1,8 @@
-import styles from './header-container.module.scss'
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 import pokeApiLogo from '../../imagens/pokeApiLogo.png'
+import styles from './header-container.module.scss'
 
 export function HeaderContainer () {
     const [ slideStyle, setSlideStyle ] = useState({backgroundColor:'var(--red-500)', left: `0%`})
@@ -9,7 +10,9 @@ export function HeaderContainer () {
     return(
         <div className={styles.headerContainer}>
             <div>
-                <i className="fas fa-chevron-left"></i>
+                <Link to="/">
+                    <i className="fas fa-chevron-left"></i>
+                </Link>
             </div> 
             <div className={styles.changeStore}>
                 <img src={pokeApiLogo} alt="pokeStoreLogo"></img>
@@ -19,7 +22,6 @@ export function HeaderContainer () {
                         className={styles.sliderButton} 
                         style={ slideStyle } 
                     ></div>
-                    
                     <div onClick={() => setSlideStyle({backgroundColor: 'var(--red-500)', left: '0%'})}>
                         <small>Fire Store</small>
                     </div>

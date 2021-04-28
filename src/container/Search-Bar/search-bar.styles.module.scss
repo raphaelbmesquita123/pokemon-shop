@@ -18,7 +18,10 @@
             font-size: 1.2rem;
             padding-left: 40px;
             border: none;
-            border-radius: 10px;
+
+            &:focus{
+                outline: none;
+            }
         }    
         i{
             position: absolute;

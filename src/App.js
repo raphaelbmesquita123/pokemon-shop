@@ -1,30 +1,21 @@
-import styles from './App.module.scss';
-import { BasketDisplay } from './container/Basket-Display/basket-display-container';
-import { HeaderContainer } from './container/Header/header-container';
-import { SearchBar } from './container/Search-Bar/search-bar-container';
-import { Stores } from './pages/stores/Stores';
+import { Stores } from './pages/stores/[slug]';
+import { HomePage }from './pages/home-page/home-page';
+
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+
+import styles from './App.module.scss'
 
 function App() {
   return (
-    <div >
-      <header>
-        <HeaderContainer/>
-      </header>
-      <div className={styles.wrapper}>
-        <main>
-          <SearchBar/>
-          <section className={styles.storeContainer}>
-            <Stores/>
-          </section>
-        </main>
-
-        <section className={styles.basketContainer}>
-          <BasketDisplay/>
-        </section>
-
+    <BrowserRouter >
+      <div className={styles.App}>
+        <Switch>
+          <Route exact path="/" component={HomePage}/>
+          <Route path="/Stores" component={Stores}/>
+        </Switch>
       </div>
-
-    </div>
+    </BrowserRouter>
   );
 }
 export default App;
+
