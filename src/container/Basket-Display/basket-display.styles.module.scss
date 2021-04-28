@@ -4,7 +4,7 @@
     flex-direction: column;
     position: fixed;
     margin: 5px;
-    width: 30rem;
+    width: 25em;
     padding: 20px;
     margin-top: -10px;
     background-color: #c90000;
@@ -42,15 +42,10 @@
         table, th, td{
             border: 1px solid black;
             border-collapse: collapse ;
-            padding: 30px;
+            padding: 15px;
         }
 
 
     }
 }
 
-@media only screen and (max-width: 900px) {
-    .basketContainer{
-        display: none;
-    }
-}

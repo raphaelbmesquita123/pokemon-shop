@@ -12,7 +12,7 @@ export function HomePage () {
             <div className={styles.HomePageContent}>
                 <h1>What kind of cards do you want to buy ?</h1>
 
-                <div className={styles.buttons}>
+                <div className={styles.buttons} store={store}>
                     <Link to="/Stores">
                         <button 
                         style={{backgroundColor: `var(--red-500)`}}

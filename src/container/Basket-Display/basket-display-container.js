@@ -24,6 +24,7 @@ export function BasketDisplay (){
                             <td>25</td>
                         </tr>
                     </tbody>
+                    
                 </table>
             </div>
             <div className={styles.footDisplay}>

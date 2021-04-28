@@ -33,7 +33,7 @@ export function Stores (){
                 }
                 setPokemons(pokemons => [...pokemons, pokemonData])
                 setIsLoading(false)
-            })
+            }).catch(err => console.log(err))
         }
 
         fetchPokemons(100) //quantity of pokemons

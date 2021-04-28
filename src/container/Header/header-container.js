@@ -37,12 +37,13 @@ export function HeaderContainer () {
                     <div onClick={() => setSlideStyle({backgroundColor: 'var(--brown-500)', left: '75%'})}>
                         <small>Rock Store</small>
                     </div>
-
                 </div>
                 
             </div>
             <div>
-                <i className="fas fa-shopping-cart"></i>
+                <Link to='/Basket'>
+                    <i className="fas fa-shopping-cart"></i>
+                </Link>
             </div>
         </div>
     )
