@@ -2,7 +2,7 @@ import { BasketDisplay } from '../../container/Basket-Display/basket-display-con
 import { HeaderContainer } from '../../container/Header/header-container';
 import { SearchBar } from '../../container/Search-Bar/search-bar-container';
 import { PokemonCard } from '../../components/card/pokemon-card'
-import { Aplication } from '../../Contexts/aplication-context'
+import { Application } from '../../Contexts/application-context'
 
 import styles from './slug.style.module.scss';
 
@@ -12,18 +12,18 @@ import {  useState, useEffect } from 'react'
 
 export function Stores (){
 
-    const { pokemons, setPokemons, onSearchChange } = Aplication()
+    const { pokemons, setPokemons, onSearchChange } = Application()
     const [isLoading, setIsLoading] = useState(true)
   
 
-
+    
     useEffect(() => {
         const fetchPokemons = async (qnt) => {
             for (let i = 1; i <= qnt; i++){
                 await fethPokemon(i)
             }
         }
-
+        
         async function fethPokemon (pokemon){
             await api.get(`${pokemon}`)
             .then(response => {
@@ -33,12 +33,14 @@ export function Stores (){
                     experience: response.data.base_experience,
                     price: response.data.base_experience * 3,
                     type: response.data.types[0].type.name
-                }
+                }              
                 setPokemons(pokemons => [...pokemons, pokemonData])
                 setIsLoading(false)
+    
             }).catch(err => console.log(err))
         }
-        fetchPokemons(120) //quantity of pokemons
+        
+        fetchPokemons(10) //quantity of pokemons
     }, [])
 
 

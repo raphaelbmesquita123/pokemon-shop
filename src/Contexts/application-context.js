@@ -1,9 +1,9 @@
 import { createContext, useContext } from 'react'
 import { useState } from 'react'
 
-export const AplicationContext = createContext({})
+export const ApplicationContext = createContext({})
 
-export function AplicationProvider ({ children }) {
+export function ApplicationProvider ({ children }) {
     const [pokemons, setPokemons] = useState([])
     const [listState, setListState] = useState([])
     const [searchField, setSearchField] = useState('')
@@ -16,7 +16,7 @@ export function AplicationProvider ({ children }) {
 
 
     return (
-    <AplicationContext.Provider
+    <ApplicationContext.Provider
         value={{ 
             pokemons,
             setPokemons,
@@ -26,10 +26,10 @@ export function AplicationProvider ({ children }) {
             onSearchChange,}}>
             
             {children}
-    </AplicationContext.Provider>
+    </ApplicationContext.Provider>
     )
 }
 
-export const Aplication = () => {
-    return useContext(AplicationContext)
+export const Application = () => {
+    return useContext(ApplicationContext)
 }
