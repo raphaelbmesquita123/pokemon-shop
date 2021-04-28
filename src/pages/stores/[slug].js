@@ -35,7 +35,7 @@ export function Stores (){
             }).catch(err => console.log(err))
         }
 
-        fetchPokemons(5) //quantity of pokemons
+        fetchPokemons(100) //quantity of pokemons
     }, [])
 
 
