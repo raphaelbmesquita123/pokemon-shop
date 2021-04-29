@@ -10,9 +10,7 @@ export function ApplicationProvider ({ children }) {
     const [isLoading, setIsLoading] = useState(true)
     const [searchField, setSearchField] = useState('')
     const [basket, setBasket] = useState([])
-    
 
-    
 
 
     //CHANGING THE SEARCH BAR
@@ -24,29 +22,30 @@ export function ApplicationProvider ({ children }) {
 
     //BASKET CHANGE 
     function onBasketChange (image, name, price) {
+        let qnt = 1
         const pokemon = {
             id: image,
             img: `https://pokeres.bastionbot.org/images/pokemon/${image}.png`,
             name: name,
-            qnt: 1,
+            qnt: qnt,
             price: price
         }
         finalBasket(pokemon)
     }
-    
-    
-    function finalBasket (pokemon) {
-        basket.map(card => {
+
+
+    function finalBasket( pokemon ) {
+
+        basket.forEach((card) => {
+            
             if(card.name === pokemon.name){
-                pokemon.qnt += 1
+                basket.splice(basket.indexOf(pokemon +1 ), 1)
             }
         })
-        setBasket([...basket, pokemon])
-        
+        setBasket(basket => [...basket, pokemon ])
+
     }
-
-    console.log(basket)
-
+  
 
 
 

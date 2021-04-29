@@ -42,7 +42,7 @@ export function HeaderContainer () {
             </div>
             <div>
                 <Link to='/Basket'>
-                    <i className="fas fa-shopping-cart"></i>
+                    <i className={`fas fa-shopping-cart ${styles.iconButton}`}></i>
                 </Link>
             </div>
         </div>

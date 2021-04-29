@@ -7,6 +7,9 @@ export function PokemonCard ({ image, name, experience, price, type}) {
 
     const { onBasketChange } = Application()
 
+    
+
+
     return(
         
         
