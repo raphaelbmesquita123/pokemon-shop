@@ -39,10 +39,30 @@
         padding: 30px 10px;
         overflow-y: scroll;
 
-        table, th, td{
-            border: 1px solid black;
-            border-collapse: collapse ;
-            padding: 20px 10px;
+        table{
+            width: 20em;
+
+            thead{
+
+                tr {
+                    text-align: center;             
+                    height: 3rem;
+                }
+            }
+
+            tbody{
+                tr{
+                    td{                
+                        text-align: center;
+                        width: 4rem;
+                        height: 5rem;
+                        
+                        img{
+                            width: 50px;
+                        }
+                    }
+                }
+            }
         }
 
 

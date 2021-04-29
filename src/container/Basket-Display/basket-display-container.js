@@ -1,6 +1,8 @@
 import styles from './basket-display.styles.module.scss'
+import { Application } from '../../Contexts/application-context'
 
 export function BasketDisplay (){
+    const { basket } = Application()
 
     return(
         <div className={styles.basketDisplay}>
@@ -19,13 +21,20 @@ export function BasketDisplay (){
                         </tr>
                     </thead>
 
-                    <tbody>
-                        <tr>
-                            <td>bulbasqdwqdalro</td>
-                            <td>pikachu <br/> 1500</td>
-                            <td>2</td>
-                            <td>25</td>
-                        </tr>
+                    <tbody> 
+                        {
+                            basket.map(cart => {
+                                return(
+                                    <tr key={cart.name}>
+                                        <td><img src={cart.img} alt={cart.id}/></td>
+                                        <td>{cart.name}</td>
+                                        <td> <i className="fas fa-minus-square"></i> {cart.qnt} <i className="fas fa-plus-square"></i></td>
+                                        <td>{cart.price}</td>
+                                        <td><i className="fas fa-trash-alt"></i></td>
+                                    </tr>
+                                )
+                            })
+                        }
                     </tbody>
                     
                 </table>

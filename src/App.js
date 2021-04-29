@@ -17,8 +17,8 @@ function App() {
         <div className={styles.App}>
           <Switch>
             <Route exact path="/" component={HomePage}/>
-            <Route exact path="/Stores/:id" render={({match}) => ( <Stores store={store.find(s => s.id === match.params.id)}/> )} />
-            <Route path="/Basket" component={BasketPage}/>
+            <Route exact path="/Stores" component={Stores}/>
+            <Route exact path="/Basket" component={BasketPage}/>
           </Switch>
         </div>
       </BrowserRouter>

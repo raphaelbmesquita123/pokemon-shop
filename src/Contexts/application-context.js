@@ -1,6 +1,5 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useState, useEffect } from 'react'
 import { api } from '../Service/axios'
-
 
 export const ApplicationContext = createContext({})
 
@@ -9,10 +8,51 @@ export function ApplicationProvider ({ children }) {
 
     const [pokemons, setPokemons] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    const [searchField, setSearchField] = useState('a')
-    const [fireStore, setFireStore] = useState([])
+    const [searchField, setSearchField] = useState('')
+    const [basket, setBasket] = useState([])
     
-    // FETCHING THE DATA
+
+    
+
+
+    //CHANGING THE SEARCH BAR
+    function onSearchChange (event) {
+        setSearchField(event.target.value)
+        let filteredPokemons = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(searchField.toLowerCase()))
+        setPokemons(filteredPokemons)
+    }
+
+    //BASKET CHANGE 
+    function onBasketChange (image, name, price) {
+        const pokemon = {
+            id: image,
+            img: `https://pokeres.bastionbot.org/images/pokemon/${image}.png`,
+            name: name,
+            qnt: 1,
+            price: price
+        }
+        finalBasket(pokemon)
+    }
+    
+    
+    function finalBasket (pokemon) {
+        basket.map(card => {
+            if(card.name === pokemon.name){
+                pokemon.qnt += 1
+            }
+        })
+        setBasket([...basket, pokemon])
+        
+    }
+
+    console.log(basket)
+
+
+
+
+
+
+    //FETCHING DATA
     useEffect(() => {
         const getStaticProps = async (qnt) => {
             for (let i = 1; i <= qnt; i++){
@@ -31,43 +71,13 @@ export function ApplicationProvider ({ children }) {
     
                 setPokemons(pokemons => [...pokemons, pokemonData])
                 setIsLoading(false)
-        
                 }).catch(err => console.log(err))
             }
         }
-        setPokemons([])
-        getStaticProps(30) //QUANTITTY OF POKEMONS
+     setPokemons([])
+     getStaticProps(10)
+
     }, [setPokemons])
-
-
-    //CHANGING THE SEARCH BAR
-    function onSearchChange (event) {
-        setSearchField(event.target.value)
-        let filteredPokemons = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(searchField.toLowerCase()))
-        setPokemons(filteredPokemons)
-    }
-
-    // fireStore
-    function onChangeStore (event){
-        const allFirePokemons = pokemons.filter(pokemon => pokemon.type === 'fire')
-
-        const allWaterPokemons = pokemons.filter(pokemon => pokemon.type === 'water')
-
-        const allEarthPokemons = pokemons.filter(pokemon => pokemon.type === 'grass')
-
-        const allRockPokemons = pokemons.filter(pokemon => pokemon.type === 'bug')
-
-        const allPokemons = pokemons
-        
-        if(event === 'fire'){
-            console.log(fireStore)
-            setFireStore(allFirePokemons)
-            
-        } 
-
-        console.log(event)
-    }
-
 
 
 
@@ -78,7 +88,10 @@ export function ApplicationProvider ({ children }) {
             setPokemons,
             onSearchChange,
             isLoading,
-            onChangeStore}}>
+            setIsLoading,
+            basket,
+            setBasket,
+            onBasketChange}}>
             
             {children}
     </ApplicationContext.Provider>
@@ -93,12 +106,3 @@ export const Application = () => {
 
 
 
-
-
-// //STORE CHANGE
-// if ( store === 'fire' ){
-//     const allfirepokemons = pokemons.filter(pokemon => pokemon.type === 'fire')
-//     setPokemons([allfirepokemons])
-//     console.log(allfirepokemons)
-//     console.log(pokemons)
-// }

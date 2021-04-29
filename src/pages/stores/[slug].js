@@ -3,14 +3,13 @@ import { HeaderContainer } from '../../container/Header/header-container';
 import { SearchBar } from '../../container/Search-Bar/search-bar-container';
 import { PokemonCard } from '../../components/card/pokemon-card'
 import { Application } from '../../Contexts/application-context'
-import { useHistory, useParams } from 'react-router-dom'
+
 
 import styles from './slug.style.module.scss';
 
 
-export function Stores ( { store } ){
-    const { store } = useParams()
-    const { store } = store.match.params
+export function Stores ( props ){
+    
     const { pokemons, onSearchChange, isLoading } = Application()
 
 
