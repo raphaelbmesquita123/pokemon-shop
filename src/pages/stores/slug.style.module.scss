@@ -29,6 +29,7 @@ header{
     .basketContainer{
         display: flex;
         justify-content: center;
+        align-items: flex-start;
         position: relative;
         width: 45rem;
         background-color: var(--gray-100);

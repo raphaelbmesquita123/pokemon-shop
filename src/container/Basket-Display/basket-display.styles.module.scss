@@ -1,13 +1,15 @@
 .basketDisplay{
     display:flex;
+    position: sticky;
+    top: 80px;
     justify-content:center;
     flex-direction: column;
-    position: fixed;
     margin: 5px;
     width: 25em;
     padding: 20px;
     margin-top: -5px;
     background-color: #c90000;
+
 
     .headDisplay{
         background-color: var(--gray-100);

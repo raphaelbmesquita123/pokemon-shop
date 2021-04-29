@@ -11,8 +11,7 @@ export function ApplicationProvider ({ children }) {
     const [searchField, setSearchField] = useState('')
     const [basket, setBasket] = useState([])
 
-
-
+    
     //CHANGING THE SEARCH BAR
     function onSearchChange (event) {
         setSearchField(event.target.value)
