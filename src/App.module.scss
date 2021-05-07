@@ -1,0 +1,19 @@
+.App{
+
+    main{
+        section{
+            display: flex;
+
+            .route{
+                flex: 1;
+            }
+
+            .basket{
+                background-color: var(--gray-100);
+                @media only screen and (max-width: 900px) {
+                    display: none;
+                }
+            }
+        }
+    }
+}

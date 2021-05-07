@@ -1,5 +1,3 @@
-import { BasketDisplay } from '../../container/Basket-Display/basket-display-container';
-import { HeaderContainer } from '../../container/Header/header-container';
 import { SearchBar } from '../../container/Search-Bar/search-bar-container';
 import { PokemonCard } from '../../components/card/pokemon-card'
 import { Application } from '../../Contexts/application-context'
@@ -16,9 +14,6 @@ export function Stores ( props ){
 
     return(
         <div >
-            <header>
-                <HeaderContainer/>
-            </header>
             <div className={styles.wrapper}>
                 <main>
                     <SearchBar handleChange={onSearchChange}/>
@@ -37,9 +32,6 @@ export function Stores ( props ){
                         }
                     </section>
                 </main>
-                <section className={styles.basketContainer}>
-                    <BasketDisplay/>
-                </section>
             </div>
         </div>
 

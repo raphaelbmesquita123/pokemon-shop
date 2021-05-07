@@ -1,0 +1,13 @@
+.PokemonPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: rgb(240, 240, 240);
+    height: 100vh;
+
+    small{
+        width: 280px;
+        text-align: justify;
+    }
+}

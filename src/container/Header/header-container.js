@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import pokeApiLogo from '../../imagens/pokeApiLogo.png'
 import styles from './header-container.module.scss'
@@ -7,12 +7,17 @@ import styles from './header-container.module.scss'
 export function HeaderContainer () {
     const [ slideStyle, setSlideStyle ] = useState({backgroundColor:'var(--red-500)', left: `0%`})
 
+    let history = useHistory();
+    const goToPreviousPath = () => {
+        history.goBack()
+    }
+
     return(
         <div className={styles.headerContainer}>
             <div>
-                <Link to="/">
-                    <i className="fas fa-chevron-left"></i>
-                </Link>
+                <button className={styles.headerButton} onClick={goToPreviousPath}>
+                    <i className="fas fa-chevron-left fa-lg"></i>
+                </button>
             </div> 
             <div className={styles.changeStore}>
                 <img src={pokeApiLogo} alt="pokeStoreLogo"></img>

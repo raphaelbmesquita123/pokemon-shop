@@ -10,7 +10,6 @@ export function ApplicationProvider ({ children }) {
     const [isLoading, setIsLoading] = useState(true)
     const [searchField, setSearchField] = useState('')
     const [basket, setBasket] = useState([])
-
     
     //CHANGING THE SEARCH BAR
     function onSearchChange (event) {
@@ -21,37 +20,21 @@ export function ApplicationProvider ({ children }) {
 
     //BASKET CHANGE 
     function onBasketChange (image, name, price) {
-        let qnt = 1
-        const pokemon = {
+        const newPokemon = {
             id: image,
             img: `https://pokeres.bastionbot.org/images/pokemon/${image}.png`,
             name: name,
-            qnt: qnt,
+            qnt: 1,
             price: price
         }
-        finalBasket(pokemon)
+        setBasket([...basket, newPokemon ])       
     }
-
-
-    function finalBasket( pokemon ) {
-
-        basket.forEach((card) => {
-            
-            if(card.name === pokemon.name){
-                basket.splice(basket.indexOf(pokemon +1 ), 1)
-            }
-        })
-        setBasket(basket => [...basket, pokemon ])
-
-    }
-  
-
-
 
 
 
     //FETCHING DATA
     useEffect(() => {
+        
         const getStaticProps = async (qnt) => {
             for (let i = 1; i <= qnt; i++){
                 await fethPokemon(i)
@@ -59,12 +42,14 @@ export function ApplicationProvider ({ children }) {
             async function fethPokemon (pokemon){
                 await api.get(`${pokemon}`)
                 .then(response => {
+                    console.log(response)
                         const pokemonData = {
                         id: response.data.id,
                         name: response.data.name,
                         experience: response.data.base_experience,
                         price: response.data.base_experience * 3,
-                        type: response.data.types[0].type.name
+                        type: response.data.types[0].type.name,
+                        img: `https://pokeres.bastionbot.org/images/pokemon/${response.data.id}.png` 
                     }     
     
                 setPokemons(pokemons => [...pokemons, pokemonData])
@@ -75,7 +60,7 @@ export function ApplicationProvider ({ children }) {
      setPokemons([])
      getStaticProps(10)
 
-    }, [setPokemons])
+    }, [])
 
 
 

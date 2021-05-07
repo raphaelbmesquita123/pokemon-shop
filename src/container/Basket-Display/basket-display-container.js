@@ -23,13 +23,13 @@ export function BasketDisplay (){
 
                     <tbody> 
                         {
-                            basket.map(cart => {
+                            basket.map(card => {
                                 return(
-                                    <tr key={cart.name}>
-                                        <td><img src={cart.img} alt={cart.id}/></td>
-                                        <td>{cart.name}</td>
-                                        <td> <i className="fas fa-minus-square"></i> {cart.qnt} <i className="fas fa-plus-square"></i></td>
-                                        <td>{cart.price}</td>
+                                    <tr key={card.id}>
+                                        <td><img src={card.img} alt={card.id}/></td>
+                                        <td>{card.name}</td>
+                                        <td> <i className="fas fa-minus-square"></i> {card.qnt} <i className="fas fa-plus-square"></i></td>
+                                        <td>{card.price}</td>
                                         <td><i className="fas fa-trash-alt"></i></td>
                                     </tr>
                                 )
