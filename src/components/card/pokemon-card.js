@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 
 import styles from './pokemon-card.styles.module.scss'
 
-export function PokemonCard ({ image, name, experience, price, type}) {
+export function PokemonCard ({ img, name, experience, price, type}) {
 
-    const { onBasketChange } = Application()
+    const { basketAddItem,  } = Application()
 
     return(
         <div>
@@ -19,7 +19,7 @@ export function PokemonCard ({ image, name, experience, price, type}) {
                     
                     <Link to={`/stores/pokemon/${name}`}>
                     <div className={styles.imagePokemonCard}>
-                            <img src={`https://pokeres.bastionbot.org/images/pokemon/${ image }.png`} alt={`${image}`}/>
+                            <img src={img} alt={name}/>
 
                             <div style={{backgroundColor: `${colors[type].circleColor}`}}></div>
                     </div>
@@ -32,7 +32,7 @@ export function PokemonCard ({ image, name, experience, price, type}) {
                         <small>R$ {price}</small>
 
                         <i className="fas fa-shopping-cart" 
-                        onClick={() => onBasketChange(image, name, price)}></i>
+                        onClick={() => basketAddItem( img, name, price)}></i>
 
                     </div>
 

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
+import { toast } from 'react-toastify'
 import { api } from '../Service/axios'
 
 export const ApplicationContext = createContext({})
@@ -9,7 +10,14 @@ export function ApplicationProvider ({ children }) {
     const [pokemons, setPokemons] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [searchField, setSearchField] = useState('')
-    const [basket, setBasket] = useState([])
+    const [basket, setBasket] = useState(() => {
+        const localStoraged = localStorage.getItem('@Pokemon-Store: basket')
+
+        if (localStoraged){
+            return JSON.parse(localStoraged)
+        }
+        return []
+    })
     
     //CHANGING THE SEARCH BAR
     function onSearchChange (event) {
@@ -18,18 +26,52 @@ export function ApplicationProvider ({ children }) {
         setPokemons(filteredPokemons)
     }
 
-    //BASKET CHANGE 
-    function onBasketChange (image, name, price) {
+    //BASKET ADD 
+    function basketAddItem ( img, name, price) {
         const newPokemon = {
-            id: image,
-            img: `https://pokeres.bastionbot.org/images/pokemon/${image}.png`,
+            img: img,
             name: name,
             qnt: 1,
             price: price
         }
-        setBasket([...basket, newPokemon ])       
+
+        const hasPokemonOnBasket = basket.find(pokemon => pokemon.name === name)
+        
+        if(hasPokemonOnBasket){
+            const newBasket = basket.filter(pokemon => pokemon.name === name ? {...pokemon, qnt: pokemon.qnt += 1} : pokemon)
+
+            setBasket([...newBasket])
+            localStorage.setItem('@Pokemon-Store: basket', JSON.stringify([...newBasket])) 
+
+        } else{
+            setBasket([...basket, newPokemon ])   
+            localStorage.setItem('@Pokemon-Store: basket', JSON.stringify([...basket, newPokemon]))    
+        }
     }
 
+
+    // BASKET REMOVE
+    function basketRemoveItem (pokemonName){
+        const newBasket = basket.filter(pokemon => pokemon.name !== pokemonName )
+        setBasket([...newBasket])
+        localStorage.setItem('@Pokemon-Store: basket', JSON.stringify([...newBasket]))
+    }
+
+    // BASKET ADD REMOVE QNT
+    function addRemoveQnt (pokemon){
+        if(pokemon.qnt === 0){
+            basketRemoveItem(pokemon.name)
+        }
+        if(pokemon.qnt === 1){
+            toast.error('You can not buy less then 1')
+        }
+        if(pokemon.qnt >= 1){
+            const newBasket = basket.map(pokemonBasket => pokemonBasket.name === pokemon.name ? {...pokemonBasket, qnt: pokemon.qnt} : pokemonBasket )
+
+            setBasket([...newBasket])
+            localStorage.setItem('@Pokemon-Store: basket', JSON.stringify([...newBasket]))
+        }
+    }
 
 
     //FETCHING DATA
@@ -42,7 +84,6 @@ export function ApplicationProvider ({ children }) {
             async function fethPokemon (pokemon){
                 await api.get(`${pokemon}`)
                 .then(response => {
-                    console.log(response)
                         const pokemonData = {
                         id: response.data.id,
                         name: response.data.name,
@@ -74,7 +115,9 @@ export function ApplicationProvider ({ children }) {
             setIsLoading,
             basket,
             setBasket,
-            onBasketChange}}>
+            basketAddItem,
+            basketRemoveItem,
+            addRemoveQnt}}>
             
             {children}
     </ApplicationContext.Provider>
@@ -84,8 +127,5 @@ export function ApplicationProvider ({ children }) {
 export const Application = () => {
     return useContext(ApplicationContext)
 }
-
-// ===================================================================================================================
-
 
 

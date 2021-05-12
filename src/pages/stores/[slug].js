@@ -25,7 +25,7 @@ export function Stores ( props ){
                             
                             pokemons.map(pokemon => {
                                 return(
-                                    <PokemonCard key={pokemon.id} image={pokemon.id} name={pokemon.name} experience={pokemon.experience} price={pokemon.price} type={ pokemon.type  }/>
+                                    <PokemonCard key={pokemon.id} img={pokemon.img} name={pokemon.name} experience={pokemon.experience} price={pokemon.price} type={ pokemon.type}/>
                                     )
                                 }
                                 )

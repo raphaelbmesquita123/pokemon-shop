@@ -1,11 +1,45 @@
 import styles from './basket-display.styles.module.scss'
 import { Application } from '../../Contexts/application-context'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 export function BasketDisplay (){
-    const { basket } = Application()
+    const { basket, basketRemoveItem, addRemoveQnt } = Application()
+
+    const total = basket.reduce((pokemonTotal, pokemonBasket) => {
+        return pokemonTotal += (pokemonBasket.price * pokemonBasket.qnt)
+    }, 0)
+
+    function handleAddQntChange (pokemon){
+        addRemoveQnt({
+            ...pokemon,
+            qnt: pokemon.qnt += 1
+        })
+
+    }
+
+    function handleRemoveQntChange (pokemon){
+        addRemoveQnt({
+            ...pokemon,
+            qnt: pokemon.qnt -= 1
+        })
+ 
+    }
 
     return(
         <div className={styles.basketDisplay}>
+           <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            />
+
             <div className={styles.headDisplay}>
                 <i className="fas fa-shopping-cart"></i>
                 <strong>Basket</strong>
@@ -22,26 +56,35 @@ export function BasketDisplay (){
                     </thead>
 
                     <tbody> 
+                    
                         {
-                            basket.map(card => {
+                            basket.map(pokemon => {
                                 return(
-                                    <tr key={card.id}>
-                                        <td><img src={card.img} alt={card.id}/></td>
-                                        <td>{card.name}</td>
-                                        <td> <i className="fas fa-minus-square"></i> {card.qnt} <i className="fas fa-plus-square"></i></td>
-                                        <td>{card.price}</td>
-                                        <td><i className="fas fa-trash-alt"></i></td>
+                                    <tr key={pokemon.name}>
+                                        <td><img src={pokemon.img} alt={pokemon.id}/></td>
+                                        <td>{pokemon.name}</td>
+
+                                        <td> <i className="fas fa-minus-square" onClick={() => pokemon.qnt === 0 ? null : handleRemoveQntChange(pokemon)}></i> 
+                                        <span>
+                                            {pokemon.qnt} 
+                                        </span>
+                                        <i className="fas fa-plus-square" onClick={() => handleAddQntChange(pokemon)}></i></td>
+
+                                        <td>{pokemon.price * pokemon.qnt}</td>
+                                        <td><i className="fas fa-trash-alt" onClick={() => basketRemoveItem(pokemon.name)}></i></td>
                                     </tr>
                                 )
                             })
                         }
+
+                        
                     </tbody>
                     
                 </table>
             </div>
             <div className={styles.footDisplay}>
                 <button>SHOP NOW</button>
-                <strong>Total $450.00</strong>
+                <strong>Total ${total}</strong>
             </div>
         </div>
     )
