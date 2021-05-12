@@ -22,9 +22,10 @@ export function ApplicationProvider ({ children }) {
     //CHANGING THE SEARCH BAR
     function onSearchChange (event) {
         setSearchField(event.target.value)
-        let filteredPokemons = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(searchField.toLowerCase()))
-        setPokemons(filteredPokemons)
+        const filteredPokemons = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(searchField.toLowerCase()))
+        setPokemons([...filteredPokemons])
     }
+    console.log(searchField)
 
     //BASKET ADD 
     function basketAddItem ( img, name, price) {
@@ -99,7 +100,7 @@ export function ApplicationProvider ({ children }) {
             }
         }
      setPokemons([])
-     getStaticProps(10)
+     getStaticProps(30)
 
     }, [])
 

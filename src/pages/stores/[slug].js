@@ -6,17 +6,14 @@ import { Application } from '../../Contexts/application-context'
 import styles from './slug.style.module.scss';
 
 
-export function Stores ( props ){
-    
-    const { pokemons, onSearchChange, isLoading } = Application()
-
-
-
+export function Stores ( ){
+    const { pokemons, isLoading } = Application()
     return(
         <div >
             <div className={styles.wrapper}>
                 <main>
-                    <SearchBar handleChange={onSearchChange}/>
+                    <SearchBar />
+                    
                     <section className={styles.storeContainer}>
                         {
                             isLoading ? <div> <h1>Loading</h1> </div>
