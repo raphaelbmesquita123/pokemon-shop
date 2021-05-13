@@ -99,7 +99,7 @@ export function ApplicationProvider ({ children }) {
             }
         }
         setPokemons([])
-        getStaticProps(10)
+        getStaticProps(90)
 
     }, [])
 
