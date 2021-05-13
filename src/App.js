@@ -5,33 +5,22 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { PokemonPage } from './pages/pokemon-page/pokemon-page'
 import { HeaderContainer } from './container/Header/header-container'
 
+
 import styles from './App.module.scss'
-import { BasketDisplay } from './container/Basket-Display/basket-display-container';
 
 function App() {
-
+  
   return (
     <ApplicationProvider>
-
       <BrowserRouter >
         <div className={styles.App}>
+            <HeaderContainer/>
           <Switch>
             <>
-            <main>
-              <header>
-                <HeaderContainer/>
-              </header>
-              <section>
-                <div className={styles.route}>
-                  <Route exact path="/" component={Stores}/>
-                  <Route exact path="/stores/pokemon/:id" component={PokemonPage}/>
-                  <Route exact path="/Basket" component={BasketPage}/>
-                </div>
-                <div className={styles.basket}>
-                  <BasketDisplay />
-                </div>
-              </section>
-            </main>
+            
+            <Route exact path="/" component={Stores}/>
+            <Route exact path="/stores/pokemon/:id" component={PokemonPage}/>
+            <Route exact path="/basket" component={BasketPage}/>
             </>
           </Switch>
         </div>

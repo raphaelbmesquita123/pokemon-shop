@@ -22,14 +22,8 @@
     
 
     .iconButton{
-        display: none;
+        display: flex;
         margin-right: 30px;
-    }
-
-    @media only screen and(max-width: 900px){
-        .iconButton{
-            display: flex;
-        }
     }
 
     .pokeStoreLogo{
@@ -42,13 +36,16 @@
         img{
             height: 100%;
         }
-
-        @media only screen and(max-width: 900px){
-            .storeButtons{
-                display:none;             
-            }
-        }
         
+    }
+    .totalItensBasket{
+        display: flex;
+        flex-direction: row;
+
+        span{
+            margin-right: -20px;
+            color: white;
+        }
     }
 }
 

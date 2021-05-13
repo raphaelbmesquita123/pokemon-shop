@@ -7,7 +7,7 @@ import styles from './slug.style.module.scss';
 
 
 export function Stores ( ){
-    const { pokemons, isLoading, searchedPokemons } = Application()
+    const { isLoading, searchedPokemons } = Application()
     return(
         <div >
             <div className={styles.wrapper}>
