@@ -7,9 +7,9 @@ export function SearchBar () {
         <div className={styles.searchBarContainer}>
             <div>
                 <input 
-                type="search"
+                type="text"
                 placeholder="POKEMON NAME"
-                onChange={onSearchChange}/>
+                onChange={(event) => onSearchChange(event)}/>
                 <i className="fas fa-search"></i>
             </div>
         </div>

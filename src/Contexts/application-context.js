@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { api } from '../Service/axios'
-
 export const ApplicationContext = createContext({})
 
 
@@ -9,7 +8,7 @@ export function ApplicationProvider ({ children }) {
 
     const [pokemons, setPokemons] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    const [searchField, setSearchField] = useState('')
+    const [searchedPokemons, setSearchedPokemons] = useState([])
     const [basket, setBasket] = useState(() => {
         const localStoraged = localStorage.getItem('@Pokemon-Store: basket')
 
@@ -18,14 +17,14 @@ export function ApplicationProvider ({ children }) {
         }
         return []
     })
-    
-    //CHANGING THE SEARCH BAR
+
+
     function onSearchChange (event) {
-        setSearchField(event.target.value)
-        const filteredPokemons = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(searchField.toLowerCase()))
-        setPokemons([...filteredPokemons])
+        let value = event.target.value.toLowerCase();
+        const filteredPokemons = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(value))
+        setSearchedPokemons([...filteredPokemons])
     }
-    console.log(searchField)
+
 
     //BASKET ADD 
     function basketAddItem ( img, name, price) {
@@ -74,10 +73,9 @@ export function ApplicationProvider ({ children }) {
         }
     }
 
-
     //FETCHING DATA
     useEffect(() => {
-        
+    
         const getStaticProps = async (qnt) => {
             for (let i = 1; i <= qnt; i++){
                 await fethPokemon(i)
@@ -93,18 +91,17 @@ export function ApplicationProvider ({ children }) {
                         type: response.data.types[0].type.name,
                         img: `https://pokeres.bastionbot.org/images/pokemon/${response.data.id}.png` 
                     }     
-    
+
                 setPokemons(pokemons => [...pokemons, pokemonData])
+                setSearchedPokemons(pokemons => [...pokemons, pokemonData])
                 setIsLoading(false)
                 }).catch(err => console.log(err))
             }
         }
-     setPokemons([])
-     getStaticProps(30)
+        setPokemons([])
+        getStaticProps(10)
 
     }, [])
-
-
 
     return (
     <ApplicationContext.Provider
@@ -118,7 +115,8 @@ export function ApplicationProvider ({ children }) {
             setBasket,
             basketAddItem,
             basketRemoveItem,
-            addRemoveQnt}}>
+            addRemoveQnt,
+            searchedPokemons}}>
             
             {children}
     </ApplicationContext.Provider>

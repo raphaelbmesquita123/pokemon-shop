@@ -6,7 +6,7 @@ import styles from './pokemon-card.styles.module.scss'
 
 export function PokemonCard ({ img, name, experience, price, type}) {
 
-    const { basketAddItem,  } = Application()
+    const { basketAddItem } = Application()
 
     return(
         <div>
