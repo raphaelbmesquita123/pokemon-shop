@@ -1,11 +1,11 @@
 import React from 'react'
-import { Application } from '../../Contexts/application-context';
+import { Basket } from '../../context/basket-context';
 import styles from './basket-page.styles.module.scss'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 export function BasketPage () {
-    const { basket, basketRemoveItem, addRemoveQnt } = Application()
+    const { basket, basketRemoveItem, addRemoveQnt } = Basket()
     
     const total = basket.reduce((pokemonTotal, pokemonBasket) => {
         return pokemonTotal += (pokemonBasket.price * pokemonBasket.qnt)

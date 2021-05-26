@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { Application } from '../../Contexts/application-context'
+import { Basket } from '../../context/basket-context'
 
 import pokeApiLogo from '../../imagens/pokeApiLogo.png'
 import styles from './header-container.module.scss'
 
 export function HeaderContainer () {
 
-    const { basket } = Application()
+    const { basket } = Basket()
 
     const totalItensOnBasket = basket.reduce((totalItens, pokemon) => {
         return totalItens += pokemon.qnt

@@ -1,0 +1,37 @@
+.homePageContainer{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction: column;
+    width:100vw;
+    height:100vh;
+    background-color: black;
+
+    img{
+        margin-bottom: 50px;
+    }
+
+    .storeOptions{
+        display:flex;
+        justify-content:center;
+        flex-wrap: wrap;
+        
+        h1{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            margin: 20px;
+            width: 150px;
+            height: 150px;
+            border-radius: 100%;
+            cursor: pointer;
+            color: white;
+            transition: transform 0.1s ease-in-out;
+        
+
+            &:hover{
+                transform: scale(0.95);
+            }
+        }
+    }
+}
