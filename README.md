@@ -29,7 +29,13 @@ https://pokemon-shop-pbmzhkqwi-raphaelbmesquita123.vercel.app/
 - Sass
 
 # Runing the project
-yarn to install or npm install
+```js
+yarn
+``` 
+to install or 
+```js
+npm install
+```
 
 # Conection center
 
