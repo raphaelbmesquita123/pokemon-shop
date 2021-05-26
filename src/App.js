@@ -7,7 +7,7 @@ import { PokemonPage } from './pages/pokemon-page/pokemon-page'
 import { HeaderContainer } from './container/Header/header-container'
 import { HomePage } from './pages/home/home-page';
 
-import styles from './App.module.scss'
+import styles from './styles/App.module.scss'
 
 function App() {
   

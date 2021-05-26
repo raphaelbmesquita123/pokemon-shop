@@ -1,81 +1,99 @@
 import React, { createContext, useContext, useState } from 'react'
 import { toast } from 'react-toastify'
+import { api } from '../service/axios'
 
 export const BasketContext = createContext({})
 
 export function BasketProvider ({ children }) {
 
-    const [pokemons, setPokemons] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
-    
     const [basket, setBasket] = useState(() => {
-        const localStoraged = localStorage.getItem('@Pokemon-Store: basket')
-
-        if (localStoraged){
+        const localStore = localStorage.getItem('@Store:')
+        const jsonLocalSore = JSON.parse(localStore)
+        const localStoraged = localStorage.getItem(`@Pokemon-Store: ${jsonLocalSore}`)
+        if(localStoraged){
             return JSON.parse(localStoraged)
         }
         return []
     })
+    
+    //CLEAN BASKET 
+    function cleanBasket (){
+        setBasket([])
+    }
+
+    //STORE
+    function changeStore(store) {
+        localStorage.setItem('@Store:', JSON.stringify(store))
+
+        const localStore = localStorage.getItem('@Store:')
+        const jsonLocalSore = JSON.parse(localStore)
+        
+        const localStoraged = localStorage.getItem(`@Pokemon-Store: ${jsonLocalSore}`)
+        if(localStoraged) {
+            const jsonStorage = JSON.parse(localStoraged)
+            setBasket(jsonStorage)
+        } 
+    }
 
     //BASKET ADD 
-    function basketAddItem ( img, name, price) {
+    async function basketAddItem ( pokemonId, pokemonType ) {
+        const { data } = await api.get(`pokemon/${pokemonId}`)
+        const hasPokemonOnBasket = basket.find(pokemon => pokemon.id === data.id)
         const newPokemon = {
-            img: img,
-            name: name,
-            qnt: 1,
-            price: price
+            ...data,
+            qty: 1,
+            price: pokemonId * 5,
+            img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`,
+            type: pokemonType
         }
-
-        const hasPokemonOnBasket = basket.find(pokemon => pokemon.name === name)
         
-        if(hasPokemonOnBasket){
-            const newBasket = basket.filter(pokemon => pokemon.name === name ? {...pokemon, qnt: pokemon.qnt += 1} : pokemon)
+        if( hasPokemonOnBasket ){
+            const newBasket = basket.filter(pokemon => pokemon.id === newPokemon.id ? {...pokemon, qty: pokemon.qty += 1} : pokemon)
 
             setBasket([...newBasket])
-            localStorage.setItem('@Pokemon-Store: basket', JSON.stringify([...newBasket])) 
+            localStorage.setItem(`@Pokemon-Store: ${newPokemon.type}`, JSON.stringify([...newBasket])) 
+        }
 
-        } else{
+        else {
             setBasket([...basket, newPokemon ])   
-            localStorage.setItem('@Pokemon-Store: basket', JSON.stringify([...basket, newPokemon]))    
+            localStorage.setItem(`@Pokemon-Store: ${newPokemon.type}`, JSON.stringify([...basket, newPokemon]))  
         }
     }
 
 
     // BASKET REMOVE
-    function basketRemoveItem (pokemonName){
-        const newBasket = basket.filter(pokemon => pokemon.name !== pokemonName )
+    function basketRemoveItem (pokemon){
+        const newBasket = basket.filter(pokemonBasket => pokemonBasket.name !== pokemon.name )
         setBasket([...newBasket])
-        localStorage.setItem('@Pokemon-Store: basket', JSON.stringify([...newBasket]))
+        localStorage.setItem(`@Pokemon-Store: ${pokemon.type}`, JSON.stringify([...newBasket]))
     }
 
-    // BASKET ADD REMOVE QNT
-    function addRemoveQnt (pokemon){
-        if(pokemon.qnt === 0){
-            basketRemoveItem(pokemon.name)
+    // BASKET ADD REMOVE QTY
+    function addRemoveQty (pokemon){
+        
+        if(pokemon.qty === 0){
+            basketRemoveItem(pokemon)
         }
-        if(pokemon.qnt === 1){
+        if(pokemon.qty === 1){
             toast.error('You can not buy less then 1')
         }
-        if(pokemon.qnt >= 1){
-            const newBasket = basket.map(pokemonBasket => pokemonBasket.name === pokemon.name ? {...pokemonBasket, qnt: pokemon.qnt} : pokemonBasket )
+        if(pokemon.qty >= 1){
+            const newBasket = basket.map(pokemonBasket => pokemonBasket.name === pokemon.name ? {...pokemonBasket, qty: pokemon.qty} : pokemonBasket )
 
             setBasket([...newBasket])
-            localStorage.setItem('@Pokemon-Store: basket', JSON.stringify([...newBasket]))
+            localStorage.setItem(`@Pokemon-Store: ${pokemon.type}`, JSON.stringify([...newBasket]))
         }
     }
 
     return (
     <BasketContext.Provider
         value={{ 
-            pokemons,
-            setPokemons,
-            isLoading,
-            setIsLoading,
             basket,
-            setBasket,
             basketAddItem,
             basketRemoveItem,
-            addRemoveQnt,            
+            addRemoveQty,  
+            changeStore,
+            cleanBasket
             }}>
             
             {children}

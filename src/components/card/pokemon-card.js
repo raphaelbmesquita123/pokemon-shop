@@ -3,10 +3,14 @@ import { Basket } from '../../context/basket-context'
 import { Link } from 'react-router-dom'
 
 import styles from './pokemon-card.styles.module.scss'
+import { formatPrice } from '../../service/formatedPrice.js'
 
 export function PokemonCard ({ pokemon }) {
     const { basketAddItem } = Basket()
 
+    function handdleAddPokemonToBasket(pokemonId, pokemonType){
+        basketAddItem(pokemonId, pokemonType)
+    }
 
     return(
         <div>
@@ -24,10 +28,10 @@ export function PokemonCard ({ pokemon }) {
 
                         <h3>{pokemon.name}</h3>
                         
-                        <small>R$ {pokemon.price}</small>
+                        <small>{formatPrice(pokemon.price)}</small>
 
                         <i className="fas fa-shopping-cart" 
-                        onClick={() => basketAddItem( pokemon.img, pokemon.name, pokemon.price)}
+                        onClick={() => handdleAddPokemonToBasket( pokemon.id, pokemon.type )}
                         ></i>
 
                     </div>

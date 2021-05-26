@@ -10,7 +10,7 @@ export function HeaderContainer () {
     const { basket } = Basket()
 
     const totalItensOnBasket = basket.reduce((totalItens, pokemon) => {
-        return totalItens += pokemon.qnt
+        return totalItens += pokemon.qty
     },0)
     
     let history = useHistory();

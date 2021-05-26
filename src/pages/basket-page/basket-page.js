@@ -3,27 +3,42 @@ import { Basket } from '../../context/basket-context';
 import styles from './basket-page.styles.module.scss'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { formatPrice } from '../../service/formatedPrice';
+
+import swal from 'sweetalert';
 
 export function BasketPage () {
-    const { basket, basketRemoveItem, addRemoveQnt } = Basket()
+    const { basket, basketRemoveItem, addRemoveQty, cleanBasket } = Basket()
     
     const total = basket.reduce((pokemonTotal, pokemonBasket) => {
-        return pokemonTotal += (pokemonBasket.price * pokemonBasket.qnt)
+        return pokemonTotal += (pokemonBasket.price * pokemonBasket.qty)
     }, 0)
 
     function handleAddQntChange (pokemon){
-        addRemoveQnt({
+        addRemoveQty({
             ...pokemon,
-            qnt: pokemon.qnt += 1
+            qty: pokemon.qty += 1
         })
     }
 
     function handleRemoveQntChange (pokemon){
-        addRemoveQnt({
+        addRemoveQty({
             ...pokemon,
-            qnt: pokemon.qnt -= 1
+            qty: pokemon.qty -= 1
         })
     }
+
+    function handleCheckout (){
+        swal({
+            title: "Your payment has been completed",
+            text: `Total: ${formatPrice(total)}`,
+            icon: "success",
+          });
+        const getStore = localStorage.getItem('@Store:')
+        const jsonStore = JSON.parse(getStore)
+        localStorage.removeItem(`@Pokemon-Store: ${jsonStore}`)
+        cleanBasket()
+      };
 
     return(
         <div className={styles.basketDisplay}>
@@ -46,7 +61,7 @@ export function BasketPage () {
                         <tr>
                             <th></th>
                             <th>Name</th>
-                            <th>Qnt</th>
+                            <th>Qty</th>
                             <th>Price</th>
                             <th>Delete</th>
                         </tr>
@@ -60,24 +75,25 @@ export function BasketPage () {
                                     <tr key={pokemon.name}>
                                         <td><img src={pokemon.img} alt={pokemon.id}/></td>
                                         <td>{pokemon.name}</td>
-                                        <div>
-                                            <td> 
-                                                <button onClick={() => pokemon.qnt === 0 ? null : handleRemoveQntChange(pokemon)}>
-                                                    <i className="fas fa-minus" ></i> 
-                                                </button>
+                
+                                        <td className={styles.qtyButtons}> 
 
-                                                <span>
-                                                    {pokemon.qnt} 
-                                                </span>
-                                                <button onClick={() => handleAddQntChange(pokemon)}>
-                                                    <i className="fas fa-plus" ></i>
-                                                </button>
+                                            <button onClick={() => pokemon.qty === 0 ? null : handleRemoveQntChange(pokemon)}>
+                                                <i className="fas fa-minus" ></i> 
+                                            </button>
 
-                                            </td>
-                                        </div>
+                                            <span>
+                                                {pokemon.qty} 
+                                            </span>
+                                            <button onClick={() => handleAddQntChange(pokemon)}>
+                                                <i className="fas fa-plus" ></i>
+                                            </button>
 
-                                        <td>{pokemon.price * pokemon.qnt}</td>
-                                        <td><i className="fas fa-trash-alt" onClick={() => basketRemoveItem(pokemon.name)}></i></td>
+                                        </td>
+                                        
+
+                                        <td>{formatPrice(pokemon.price * pokemon.qty)}</td>
+                                        <td><i className="fas fa-trash-alt" onClick={() => basketRemoveItem(pokemon)}></i></td>
                                     </tr>
                                 )
                             })
@@ -90,8 +106,8 @@ export function BasketPage () {
             </div>
 
             <div className={styles.footDisplay}>
-                <button>SHOP NOW</button>
-                <strong>Total ${total}</strong>
+                <button onClick={() => handleCheckout()}>SHOP NOW</button>
+                <strong>Total: {formatPrice(total)}</strong>
             </div>
         </div>
     )
