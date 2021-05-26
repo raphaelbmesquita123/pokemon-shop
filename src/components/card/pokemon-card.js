@@ -3,7 +3,7 @@ import { Basket } from '../../context/basket-context'
 import { Link } from 'react-router-dom'
 
 import styles from './pokemon-card.styles.module.scss'
-import { formatPrice } from '../../service/formatedPrice.js'
+import { formatPrice } from '../../utils/formatedPrice.js'
 
 export function PokemonCard ({ pokemon }) {
     const { basketAddItem } = Basket()

@@ -38,6 +38,7 @@ export function BasketProvider ({ children }) {
     //BASKET ADD 
     async function basketAddItem ( pokemonId, pokemonType ) {
         const { data } = await api.get(`pokemon/${pokemonId}`)
+        
         const hasPokemonOnBasket = basket.find(pokemon => pokemon.id === data.id)
         const newPokemon = {
             ...data,

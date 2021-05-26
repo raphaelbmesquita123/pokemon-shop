@@ -3,7 +3,7 @@ import { Basket } from '../../context/basket-context';
 import styles from './basket-page.styles.module.scss'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { formatPrice } from '../../service/formatedPrice';
+import { formatPrice } from '../../utils/formatedPrice';
 
 import swal from 'sweetalert';
 

@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 
 import styles from './pokemon-page.module.scss'
 import { Basket } from '../../context/basket-context';
-import { formatPrice } from '../../service/formatedPrice';
+import { formatPrice } from '../../utils/formatedPrice';
 
 export function PokemonPage() {
     const { id } = useParams()
