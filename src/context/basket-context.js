@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react'
 import { toast } from 'react-toastify'
-import { api } from '../service/axios'
+import { api } from '../Service/axios'
 
 export const BasketContext = createContext({})
 

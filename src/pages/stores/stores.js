@@ -1,6 +1,6 @@
 import { PokemonCard } from '../../components/card/pokemon-card'
 
-import { api } from '../../service/axios' 
+import { api } from '../../Service/axios' 
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 

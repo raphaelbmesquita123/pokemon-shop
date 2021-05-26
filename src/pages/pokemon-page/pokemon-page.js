@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 
-import { api } from '../../service/axios';
+import { api } from '../../Service/axios';
 import { useParams } from 'react-router-dom';
 
 import styles from './pokemon-page.module.scss'
