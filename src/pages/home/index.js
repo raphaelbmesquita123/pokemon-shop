@@ -1,7 +1,11 @@
 import React from 'react'
-import styles from './home-page.styles.module.scss'
-import logoImage from '../../imagens/pokeApiLogo.png'
 import { Link } from 'react-router-dom'
+import logoImage from '../../imagens/pokeApiLogo.png'
+
+//styles
+import styles from './styles.module.scss'
+
+//context
 import { Basket } from '../../context/basket-context'
 
 export function HomePage() {
