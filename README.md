@@ -1,72 +1,60 @@
-https://determined-aryabhata-562af4.netlify.app
+# DEMO
+https://pokemon-shop-pbmzhkqwi-raphaelbmesquita123.vercel.app/
 
-# Getting Started with Create React App
+# POKEMON STORE
+#### HOME PAGE
+- You can choose to see the pokemon by its type
+![HOME PAGE](.github/pokeStore.png) 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### STORE PAGE
+- You can search for a pokemon card
+- Add the pokemon to your basket
+- Clicking on the image you can see more details about it
+![STORE PAGE](.github/website.png)
 
-## Available Scripts
+#### POKEMON DETAILS
+- See more details about the pokemon
+- Add to your basket
+![HOME PAGE](.github/pokemonDetails.png)
 
-In the project directory, you can run:
+#### BASKET PAGE
+-You can add more pokemon's card and finish your payment
+![HOME PAGE](.github/basket.png)
 
-### `yarn start`
+# Technology
+- ReactJs
+- React Hooks
+- Axios
+- Font Awesome
+- Sass
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Runing the project
+```js
+yarn
+``` 
+to install or 
+```js
+npm install
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Conection center
 
-### `yarn test`
+<a href="https://www.linkedin.com/in/raphael-mesquita-135996139/" style="display: flex;  justify-content: center; align-items: center; text-decoration: none; color: #e69d58;">
+ <img src="https://github.com/raphaelbmesquita123/pokemon-shop/blob/main/.github/LinkedIn-Logo.png" width="25px" /> 
+ <p>Linkedin</p>
+</a>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<a href="https://www.instagram.com/raphaelbmesquita" style="display: flex; justify-content: center;align-items: center; text-decoration: none; color: #e69d58;">
+ <img src="https://github.com/raphaelbmesquita123/pokemon-shop/blob/main/.github/instagram.jpg" width="20px" /> 
+ <p>Instagram</p>
+</a>
 
-### `yarn build`
+<a href="https://www.facebook.com/raphael.brandaomesquita/" style="display: flex;  justify-content: center; align-items: center; text-decoration: none; color: #e69d58;">
+ <img src="https://github.com/raphaelbmesquita123/pokemon-shop/blob/main/.github/facebook.png" width="25px" /> 
+ <p>Facebook</p>
+</a>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br>
+<p style="display: flex;  justify-content: center; align-items: center; text-decoration: none; color: #e69d58;">
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+℗ 2021 Raphael Mesquita
