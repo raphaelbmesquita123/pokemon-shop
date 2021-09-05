@@ -10,12 +10,17 @@ import { api } from '../../Service/axios'
 //styles
 import styles from './styles.module.scss'
 
+//context
+import { Basket } from '../../context/basket-context'
+
 export function Stores() {
   const [isLoading, setIsLoading] = useState(true)
   const [searchedPokemons, setSearchedPokemons] = useState([])
   const [pokemons, setPokemons] = useState([])
 
+  const { changeStore } = Basket()
   const { type } = useParams()
+
   useEffect(() => {
     try {
       if (type) {
@@ -40,6 +45,7 @@ export function Stores() {
         }
 
         fethPokemons()
+        changeStore(type)
       }
     } catch (err) {
       console.log(err)

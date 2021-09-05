@@ -18,7 +18,7 @@ export function PokemonPage() {
   const { id } = useParams()
   const [pokemon, setPokemon] = useState([])
   const { basketAddItem } = Basket()
-
+  console.log(id)
   useEffect(() => {
     api.get(`/pokemon/${id}`).then((response) => {
       setPokemon({
