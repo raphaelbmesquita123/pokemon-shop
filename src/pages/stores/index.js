@@ -19,7 +19,7 @@ export function Stores() {
   const [pokemons, setPokemons] = useState([])
 
   const { changeStore } = Basket()
-  const { type } = useParams()
+  const { type } = useParams()  
 
   useEffect(() => {
     try {

@@ -17,8 +17,7 @@ import { Basket } from '../../context/basket-context'
 export function PokemonPage() {
   const { id } = useParams()
   const [pokemon, setPokemon] = useState([])
-  const { basketAddItem } = Basket()
-  console.log(id)
+  const { basketAddItem, store } = Basket()
   useEffect(() => {
     api.get(`/pokemon/${id}`).then((response) => {
       setPokemon({
@@ -26,12 +25,13 @@ export function PokemonPage() {
         name: response.data.name,
         price: response.data.id * 5,
         img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${response.data.id}.png`,
+        type: store
       })
     })
-  }, [id])
+  }, [id, store])
 
-  function handdleAddPokemonToBasket(pokemonId) {
-    basketAddItem(pokemonId)
+  function handdleAddPokemonToBasket(pokemonId, pokemonType) {
+    basketAddItem(pokemonId, pokemonType)
   }
 
   return (
@@ -50,7 +50,7 @@ export function PokemonPage() {
             <h3>Price: {formatPrice(pokemon.price)}</h3>
             <i
               className={`fas fa-shopping-cart ${styles.basket}`}
-              onClick={() => handdleAddPokemonToBasket(pokemon.id)}
+              onClick={() => handdleAddPokemonToBasket(pokemon.id, pokemon.type)}
             ></i>
           </div>
         </div>

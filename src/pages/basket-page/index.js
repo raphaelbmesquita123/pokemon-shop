@@ -13,7 +13,8 @@ import styles from './styles.module.scss'
 import { Basket } from '../../context/basket-context'
 
 export function BasketPage() {
-  const { basket, store, basketRemoveItem, addRemoveQty, cleanBasket } = Basket()
+  const { basket, store, basketRemoveItem, addRemoveQty, cleanBasket } =
+    Basket()
 
   const total = basket.reduce((pokemonTotal, pokemonBasket) => {
     return (pokemonTotal += pokemonBasket.price * pokemonBasket.qty)
