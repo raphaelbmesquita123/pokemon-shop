@@ -1,3 +1,17 @@
+# Runing the project
+```js
+yarn
+``` 
+to install or 
+```js
+npm install
+```
+## After installing the dependencies
+
+```js
+yarn start
+```
+
 # DEMO
 https://pokemon-shop-pbmzhkqwi-raphaelbmesquita123.vercel.app/
 
@@ -27,15 +41,6 @@ https://pokemon-shop-pbmzhkqwi-raphaelbmesquita123.vercel.app/
 - Axios
 - Font Awesome
 - Sass
-
-# Runing the project
-```js
-yarn
-``` 
-to install or 
-```js
-npm install
-```
 
 # Conection center
 
